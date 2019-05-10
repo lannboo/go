@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
+</head>
+<body>
+<div>
+    <textarea type="text" id="description" name="description">我一开始就在噢</textarea>
+
+</div>
+<div>
+    <br/>
+    <input id="get_data" type="button" value="获取CKEDITOR的值"> | <input id="set_data" type="button" value="填充CKEDITOR的值">
+</div>
+
+<script src="/static/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="/static/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('description', {
+            language  : 'zh-cn',
+            image_previewText :  ' ',
+            removeDialogTabs :'image:advanced;image:Link',   //隐藏超链接与高级选项
+            filebrowserImageUploadUrl : "http://127.0.0.1/test", //上传图片的地址
+
+        });
+
+        $("#get_data").click(function(){
+            var data = CKEDITOR.instances.description.getData(); //description这个和上午replace函数中一致
+            alert(data); //用alert窗口显示data的内容
+        });
+
+        $("#set_data").click(function(){
+            var html = "<p>我是姜哥</p> <h2>我爱Django</h2>";
+            var data = CKEDITOR.instances.description.setData(html); //description这个和上午replace函数中一致
+        });
+    });
+</script>
+
+
+</body>
+</html>
